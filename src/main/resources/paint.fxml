@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.canvas.*?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="pl.sda.marcin.balicki.vector.paint.Controller">
+  <children>
+    <BorderPane prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <bottom>
+        <HBox alignment="CENTER" prefHeight="41.0" prefWidth="725.0">
+          <children>
+            <Label text="Fill color" />
+            <ColorPicker fx:id="fillColorPicker" />
+            <Label text="Stroke color" />
+            <ColorPicker fx:id="strokeColorPicker" />
+          </children>
+        </HBox>
+      </bottom>
+      <center>
+        <Canvas fx:id="canvas" height="400.0" scaleX="1.0" scaleY="1.2233280763626098" width="700.0" />
+      </center>
+      <left>
+        <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0">
+          <children>
+            <Button fx:id="lineTool" mnemonicParsing="false" onAction="#changeTool" text="Line" />
+            <Button fx:id="rectTool" mnemonicParsing="false" onAction="#changeTool" text="Rectangle" />
+            <Button fx:id="circleTool" mnemonicParsing="false" onAction="#changeTool" text="Circle" />
+            <Button fx:id="triangleTool" mnemonicParsing="false" onAction="#changeTool" text="Triangle" />
+            <Button fx:id="ellipseTool" mnemonicParsing="false" onAction="#changeTool" text="Ellipse" />
+            <Button fx:id="starTool" mnemonicParsing="false" onAction="#changeTool" text="Star" />
+          </children>
+        </VBox>
+      </left>
+      <top>
+        <HBox alignment="TOP_RIGHT" prefHeight="41.0" prefWidth="725.0" BorderPane.alignment="CENTER_RIGHT">
+          <children>
+            <Button mnemonicParsing="false" text="Clear" />
+            <Button mnemonicParsing="false" text="Load" />
+            <Button mnemonicParsing="false" onAction="#handleSave" text="Save" />
+          </children>
+        </HBox>
+      </top>
+    </BorderPane>
+  </children>
+</AnchorPane>
