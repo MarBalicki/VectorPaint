@@ -1,4 +1,4 @@
-package pl.sda.marcin.balicki.vectorpaint;
+package pl.sda.marcin.balicki.vector.paint;
 
 public class Main {
 
