@@ -11,10 +11,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import pl.sda.marcin.balicki.vector.paint.shapes.Line;
-import pl.sda.marcin.balicki.vector.paint.shapes.Rectangle;
-import pl.sda.marcin.balicki.vector.paint.shapes.Shape;
-import pl.sda.marcin.balicki.vector.paint.shapes.Triangle;
+import pl.sda.marcin.balicki.vector.paint.shapes.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -79,7 +76,7 @@ public class Controller {
                 endY = event.getY();
                 System.out.printf("Dragged x=%f y=%f", endX, endY);
                 prepareShape();
-                applyShape();
+//                applyShape();
                 refreshCanvas();
             }
         });
@@ -103,8 +100,8 @@ public class Controller {
                 return currentShape = new Line(startX, startY, endX, endY);
             case RECTANGLE:
                 return currentShape = new Rectangle(startX, startY, endX, endY);
-//            case CIRCLE:
-//                currentShape = new Circle(startX, startY, endX, endY);
+            case CIRCLE:
+                return currentShape = new Circle(startX, startY, endX, endY);
 //            case STAR:
 //                currentShape = new Star(startX, startY, endX, endY);
 //            case ELLIPSE:
