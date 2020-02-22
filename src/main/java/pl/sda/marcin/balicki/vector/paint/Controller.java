@@ -11,14 +11,19 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import jdk.internal.util.xml.impl.ReaderUTF16;
+import jdk.internal.util.xml.impl.ReaderUTF8;
+import pl.sda.marcin.balicki.vector.paint.io.SDAFileReader;
 import pl.sda.marcin.balicki.vector.paint.shapes.*;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.Reader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class Controller {
 
@@ -84,7 +89,6 @@ public class Controller {
 
     private void applyShape() {
         shapeList.add(currentShape);
-
     }
 
     private void prepareShape() {
@@ -97,17 +101,17 @@ public class Controller {
         switch (currentTool) {
             default:
             case LINE:
-                return currentShape = new Line(startX, startY, endX, endY);
+                return new Line(startX, startY, endX, endY);
             case RECTANGLE:
-                return currentShape = new Rectangle(startX, startY, endX, endY);
+                return new Rectangle(startX, startY, endX, endY);
             case CIRCLE:
-                return currentShape = new Circle(startX, startY, endX, endY);
-//            case STAR:
-//                currentShape = new Star(startX, startY, endX, endY);
-//            case ELLIPSE:
-//                currentShape = new Ellipse(startX, startY, endX, endY);
+                return new Circle(startX, startY, endX, endY);
+            case STAR:
+                return new Star(startX, startY, endX, endY);
+            case ELLIPSE:
+                return new Ellipse(startX, startY, endX, endY);
             case TRIANGLE:
-                return currentShape = new Triangle(startX, startY, endX, endY);
+                return new Triangle(startX, startY, endX, endY);
         }
     }
 
@@ -143,6 +147,7 @@ public class Controller {
             }
         }
     }
+
     private void saveTextToFile(String content, File file) {
         try {
             PrintWriter writer;
@@ -172,5 +177,30 @@ public class Controller {
         } else {
             throw new IllegalStateException("Unsupported tool");
         }
+
+        System.out.println(currentTool);
     }
+
+    @FXML
+    public void handleLoad() {
+        FileChooser fileChooser = new FileChooser();
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("YOLO files (*.yolo)", "*.yolo");
+        fileChooser.getExtensionFilters().add(extFilter);
+
+        File file = fileChooser.showOpenDialog(new Stage());
+
+        if (file != null) {
+            ShapeFactory factory = new ShapeFactory();
+            SDAFileReader reader = new SDAFileReader(file);
+            shapeList = reader.readFile().stream()
+                    .map(string -> factory.get(string))
+                    .filter(shape -> shape != null)
+                    .collect(Collectors.toList());
+            refreshCanvas();
+        }
+    }
+
+
 }
+
+

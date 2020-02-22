@@ -22,7 +22,7 @@
         </HBox>
       </bottom>
       <center>
-        <Canvas fx:id="canvas" height="400.0" scaleX="1.0" scaleY="1.2233280763626098" width="700.0" />
+        <Canvas fx:id="canvas" height="400.0" scaleX="1.0" scaleY="1.0" width="700.0" />
       </center>
       <left>
         <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0">
@@ -40,7 +40,7 @@
         <HBox alignment="TOP_RIGHT" prefHeight="41.0" prefWidth="725.0" BorderPane.alignment="CENTER_RIGHT">
           <children>
             <Button mnemonicParsing="false" text="Clear" />
-            <Button mnemonicParsing="false" text="Load" />
+            <Button mnemonicParsing="false" onAction="#handleLoad" text="Load" />
             <Button mnemonicParsing="false" onAction="#handleSave" text="Save" />
           </children>
         </HBox>
