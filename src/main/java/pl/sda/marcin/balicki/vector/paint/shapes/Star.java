@@ -28,20 +28,21 @@ public class Star extends Shape {
     public void draw(GraphicsContext context) {
         context.beginPath();
         context.moveTo(xCenter, yCenter - radius);
-        int count = 5;
+        int count = 10;          //zmiana wartości daje wielokąty
         for (int i = 0; i < count; i++) {
             double a = (double) i / count * 2 * Math.PI;
-            double xDelta = Math.sin(a) * radius;
-            double yDelta = Math.cos(a) * radius;
+            double r = i % 2 == 0 ? radius : radius / 2;
+            double xDelta = Math.sin(a) * r;
+            double yDelta = Math.cos(a) * r;
             double x = xCenter + xDelta;
             double y = yCenter - yDelta;
-            context.lineTo(x,y);
+            context.lineTo(x, y);
         }
         context.closePath();
         context.stroke();
         context.fill();
 
-//        context.strokeOval(x, y, size, size);
+//        context.strokeOval();
 //        context.fillOval(x, y, size, size);
     }
 
