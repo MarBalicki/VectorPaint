@@ -1,9 +1,8 @@
 package pl.sda.marcin.balicki.vector.paint;
 
-import pl.sda.marcin.balicki.vector.paint.shapes.Line;
-import pl.sda.marcin.balicki.vector.paint.shapes.Rectangle;
-import pl.sda.marcin.balicki.vector.paint.shapes.Shape;
-import pl.sda.marcin.balicki.vector.paint.shapes.Triangle;
+import pl.sda.marcin.balicki.vector.paint.shapes.*;
+
+import javax.xml.stream.events.StartDocument;
 
 public class ShapeFactory {
 
@@ -17,6 +16,12 @@ public class ShapeFactory {
                 return getRectangle(data);
             case "triangle":
                 return getTriangle(data);
+            case "ellipse":
+                return getEllipse(data);
+            case "circle":
+                return getCircle(data);
+            case "star":
+                return getStar(data);
         }
         return null;
     }
@@ -74,4 +79,53 @@ public class ShapeFactory {
                 .setStrokeColor(strokeColor);
         return builder.build();
     }
+
+    private Shape getEllipse(String[] data) {
+        double x1 = Double.parseDouble(data[1]);
+        double y1 = Double.parseDouble(data[2]);
+        double x2 = Double.parseDouble(data[3]);
+        double y2 = Double.parseDouble(data[4]);
+        String fillColor = data[5];
+        String strokeColor = data[6];
+        Ellipse.Builder builder = new Ellipse.Builder()
+                .setX1(x1)
+                .setY1(y1)
+                .setX2(x2)
+                .setY2(y2)
+                .setFillColor(fillColor)
+                .setStrokeColor(strokeColor);
+        return builder.build();
+    }
+
+    private Shape getCircle(String[] data) {
+        double x1 = Double.parseDouble(data[1]);
+        double y1 = Double.parseDouble(data[2]);
+        double x2 = Double.parseDouble(data[3]);
+        String fillColor = data[4];
+        String strokeColor = data[5];
+        Circle.Builder builder = new Circle.Builder()
+                .setXCenter(x1)
+                .setYCenter(y1)
+                .setRadius(x2)
+                .setFillColor(fillColor)
+                .setStrokeColor(strokeColor);
+        return builder.build();
+    }
+
+    private Shape getStar(String[] data) {
+        double x1 = Double.parseDouble(data[1]);
+        double y1 = Double.parseDouble(data[2]);
+        double x2 = Double.parseDouble(data[3]);
+        String fillColor = data[4];
+        String strokeColor = data[5];
+        Star.Builder builder = new Star.Builder()
+                .setXCenter(x1)
+                .setYCenter(y1)
+                .setRadius(x2)
+                .setFillColor(fillColor)
+                .setStrokeColor(strokeColor);
+        return builder.build();
+    }
+
+    //todo star
 }

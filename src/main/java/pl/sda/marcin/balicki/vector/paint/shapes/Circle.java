@@ -18,9 +18,9 @@ public class Circle extends Shape {
     }
 
     private Circle(Builder builder) {
-        this.xCenter = builder.x1;
-        this.yCenter = builder.y1;
-        this.radius = builder.x2;
+        this.xCenter = builder.xCenter;
+        this.yCenter = builder.yCenter;
+        this.radius = builder.radius;
         setFillColor(builder.fillColor);
         setStrokeColor(builder.strokeColor);
     }
@@ -45,10 +45,9 @@ public class Circle extends Shape {
     }
 
     public static class Builder {
-        double x1;
-        double y1;
-        double x2;
-        double y2;
+        double xCenter;
+        double yCenter;
+        double radius;
         Color fillColor;
         Color strokeColor;
 
@@ -56,23 +55,18 @@ public class Circle extends Shape {
             return new Circle(this);
         }
 
-        public Builder setX1(double x1) {
-            this.x1 = x1;
+        public Builder setXCenter(double x1) {
+            this.xCenter = x1;
             return this;
         }
 
-        public Builder setY1(double y1) {
-            this.y1 = y1;
+        public Builder setYCenter(double y1) {
+            this.yCenter = y1;
             return this;
         }
 
-        public Builder setX2(double x2) {
-            this.x2 = x2;
-            return this;
-        }
-
-        public Builder setY2(double y2) {
-            this.y2 = y2;
+        public Builder setRadius(double x2) {
+            this.radius = x2;
             return this;
         }
 
